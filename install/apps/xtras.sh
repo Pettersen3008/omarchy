@@ -2,8 +2,8 @@
 
 if [ -z "$OMARCHY_BARE" ]; then
   yay -S --noconfirm --needed \
-    gnome-calculator gnome-keyring signal-desktop \
-    obsidian-bin libreoffice obs-studio kdenlive \
+    gnome-calculator gnome-keyring  \
+    obsidian-bin kdenlive \
     xournalpp localsend-bin
 
   # Packages known to be flaky or having key signing issues are run one-by-one

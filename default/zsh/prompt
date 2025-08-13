@@ -1,0 +1,42 @@
+# Enable colors
+autoload -U colors && colors
+
+# Git status function
+git_branch() {
+  git branch 2>/dev/null | grep '^*' | colrm 1 2
+}
+
+git_status() {
+  if git rev-parse --git-dir > /dev/null 2>&1; then
+    local branch=$(git_branch)
+    local status=""
+    
+    # Check for uncommitted changes
+    if ! git diff --quiet 2>/dev/null; then
+      status+="%F{red}*%f"
+    fi
+    
+    # Check for staged changes
+    if ! git diff --cached --quiet 2>/dev/null; then
+      status+="%F{green}+%f"
+    fi
+    
+    # Check for untracked files
+    if [ -n "$(git ls-files --others --exclude-standard 2>/dev/null)" ]; then
+      status+="%F{blue}?%f"
+    fi
+    
+    if [ -n "$branch" ]; then
+      echo " %F{yellow}⎇ $branch%f$status"
+    fi
+  fi
+}
+
+# Enhanced prompt with git integration and colors
+setopt prompt_subst
+PS1='%F{cyan}%~%f$(git_status) %F{magenta}❯%f '
+
+# Set window title to current working directory
+precmd() {
+  print -Pn "\e]0;%~\a"
+}
