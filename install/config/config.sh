@@ -3,9 +3,8 @@
 # Copy over Omarchy configs
 cp -R ~/.local/share/omarchy/config/* ~/.config/
 
-# Use default zshrc from Omarchy and set zsh as default shell
+# Use default zshrc from Omarchy 
 cp ~/.local/share/omarchy/default/zshrc ~/.zshrc
-sudo chsh -s $(which zsh)
 
 # Ensure application directory exists for update-desktop-database
 mkdir -p ~/.local/share/applications
