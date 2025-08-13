@@ -31,5 +31,11 @@ if [[ -n "$OMARCHY_REF" ]]; then
   cd -
 fi
 
+# Remove .config if exists
+if [[ -d ~/.config ]]; then
+  echo -e "\nRemoving existing .config directory..."
+  rm -rf ~/.config
+fi
+
 echo -e "\nInstallation starting..."
 source ~/.local/share/omarchy/install.sh
