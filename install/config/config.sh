@@ -3,8 +3,10 @@
 # Copy over Omarchy configs
 cp -R ~/.local/share/omarchy/config/* ~/.config/
 
-# Use default bashrc from Omarchy
-cp ~/.local/share/omarchy/default/bashrc ~/.bashrc
+# Use default zsh from Omarchy
+cp ~/.local/share/omarchy/default/zshrc ~/.zshrc
+
+chsh -s $(which zsh)
 
 # Ensure application directory exists for update-desktop-database
 mkdir -p ~/.local/share/applications
